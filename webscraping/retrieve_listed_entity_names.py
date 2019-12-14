@@ -2,7 +2,6 @@
 
 # imports
 import requests, bs4
-import pandas as pd
 
 def main():
 
