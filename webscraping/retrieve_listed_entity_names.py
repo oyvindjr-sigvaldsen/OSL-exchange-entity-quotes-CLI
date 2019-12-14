@@ -67,8 +67,7 @@ def main():
 														NO_ticker_list_URL,
 														)
 
-	print(entity_names)
-	print(entity_URL_list)
+	return entity_names, entity_URL_list
 
 if __name__ == "__main__":
 	main()
