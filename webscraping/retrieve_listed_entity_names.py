@@ -50,7 +50,7 @@ def main():
 			num_tickers = int(len(table_row_elements)/index_interval)
 
 			for i in range(0, num_tickers):
-				
+
 				entity = table_row_elements[entity_name_index].find("a")
 
 				entity_names.append(entity.text)
