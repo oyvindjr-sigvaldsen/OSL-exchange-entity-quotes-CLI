@@ -6,8 +6,7 @@ import sqlite3
 
 def main():
 
-	# retrieve_num_table_pages
-
+	# retrieve num_page 
 	page_num = 1
 	NO_ticker_list_base_URL = "https://www.nordnet.no/market/stocks?exchangeCountry=NO"
 
@@ -77,6 +76,6 @@ def main():
 		connection.commit()
 
 	connection.close()
-	
+
 if __name__ == "__main__":
 	main()
