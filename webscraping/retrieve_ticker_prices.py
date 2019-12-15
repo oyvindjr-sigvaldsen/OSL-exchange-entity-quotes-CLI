@@ -2,7 +2,6 @@
 
 # imports
 import requests, bs4, time, sqlite3
-import retrieve_listed_entity_names as rlen
 
 def main():
 
@@ -53,7 +52,7 @@ def main():
 
 		#print(entity_names[entity_index_list[i]])
 		#print(current_price.text)
-		print("--- %s seconds ---" % (time.time() - start_time))
+	print("--- %s seconds ---" % (time.time() - start_time))
 
 if __name__ == "__main__":
 	main()
