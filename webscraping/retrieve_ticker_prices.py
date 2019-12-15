@@ -1,7 +1,7 @@
 #!/usr/local/bin/python3
 
 # imports
-import requests, bs4, time
+import requests, bs4, time, sqlite3
 import retrieve_listed_entity_names as rlen
 
 def main():
@@ -9,7 +9,13 @@ def main():
 	# for checking file runtime
 	start_time = time.time()
 
-	entity_names, entity_URL_list = rlen.main()
+	# retrieve entity_names, entity_URL_list from sqlite3 db
+	connection = sqlite3.connect("OSL_exchange_live_watchlist.db")
+	cursor = connection.cursor()
+	cursor.execute("SELECT * FROM entity_info;")
+
+	entity_info = cursor.fetchall()
+	entity_names, entity_URL_list = zip(*entity_info)
 	nordnet_base_URL = "https://www.nordnet.no"
 
 	entity_list = [
@@ -30,7 +36,6 @@ def main():
 	entity_index_list = []
 
 	for entity in entity_list:
-
 		index = entity_names.index(entity)
 		entity_index_list.append(index)
 
@@ -46,8 +51,8 @@ def main():
 		current_price_span_class = "Typography__StyledTypography-sc-10mju41-0 iypTIw StatsBox__StyledPriceText-sc-1p4v3dm-2 gwiUDd"
 		current_price = soup.find("span", {"class":current_price_span_class})
 
-		print(entity_names[entity_index_list[i]])
-		print(current_price.text)
+		#print(entity_names[entity_index_list[i]])
+		#print(current_price.text)
 		print("--- %s seconds ---" % (time.time() - start_time))
 
 if __name__ == "__main__":

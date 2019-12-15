@@ -2,6 +2,7 @@
 
 # imports
 import requests, bs4
+import sqlite3
 
 def main():
 
@@ -66,7 +67,16 @@ def main():
 														NO_ticker_list_URL,
 														)
 
-	return entity_names, entity_URL_list
+	connection = sqlite3.connect("OSL_exchange_live_watchlist.db")
+	cursor = connection.cursor()
 
+	for i in range(0, len(entity_names)):
+
+		cursor.execute("""INSERT INTO entity_info(entity_name, entity_URL)
+			VALUES(?, ?)""", (entity_names[i], entity_URL_list[i]))
+		connection.commit()
+
+	connection.close()
+	
 if __name__ == "__main__":
 	main()
