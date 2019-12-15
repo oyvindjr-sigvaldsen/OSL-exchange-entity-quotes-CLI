@@ -50,8 +50,8 @@ def main():
 		current_price_span_class = "Typography__StyledTypography-sc-10mju41-0 iypTIw StatsBox__StyledPriceText-sc-1p4v3dm-2 gwiUDd"
 		current_price = soup.find("span", {"class":current_price_span_class})
 
-		#print(entity_names[entity_index_list[i]])
-		#print(current_price.text)
+		print(entity_names[entity_index_list[i]])
+		print(current_price.text)
 	print("--- %s seconds ---" % (time.time() - start_time))
 
 if __name__ == "__main__":

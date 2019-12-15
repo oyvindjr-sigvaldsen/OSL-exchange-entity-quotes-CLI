@@ -6,7 +6,7 @@ import sqlite3
 
 def main():
 
-	# retrieve num_page 
+	# retrieve num_page
 	page_num = 1
 	NO_ticker_list_base_URL = "https://www.nordnet.no/market/stocks?exchangeCountry=NO"
 
