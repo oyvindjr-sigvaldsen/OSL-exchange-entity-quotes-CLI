@@ -17,7 +17,7 @@ def main():
 	entity_names, entity_URL_list = zip(*entity_info)
 	nordnet_base_URL = "https://www.nordnet.no"
 
-	entity_list = [
+	old_entity_list = [
 		"Norsk Hydro",
 		"Nordic Nanovector",
 		"DNO",
@@ -31,6 +31,8 @@ def main():
 		"Targovax",
 		"Elkem"
 	]
+
+	entity_list = ["Norsk Hydro"]
 
 	entity_index_list = []
 
