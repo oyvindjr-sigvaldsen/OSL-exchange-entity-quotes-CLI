@@ -17,7 +17,7 @@ def main():
 	entity_names, entity_URL_list = zip(*entity_info)
 	nordnet_base_URL = "https://www.nordnet.no"
 
-	old_entity_list = [
+	entity_list = [
 		"Norsk Hydro",
 		"Nordic Nanovector",
 		"DNO",
@@ -32,7 +32,7 @@ def main():
 		"Elkem"
 	]
 
-	entity_list = ["Norsk Hydro"]
+	#entity_list = ["Norsk Hydro"]
 
 	entity_index_list = []
 
@@ -45,7 +45,8 @@ def main():
 	for i in range(0, len(entity_index_list)):
 
 		entity_URL = nordnet_base_URL + entity_URL_list[entity_index_list[i]]
-
+		print(entity_URL)
+		
 		request = requests.get(entity_URL)
 		soup = bs4.BeautifulSoup(request.text, "html.parser")
 
@@ -54,6 +55,7 @@ def main():
 
 		print(entity_names[entity_index_list[i]])
 		print(current_price.text)
+
 	print("--- %s seconds ---" % (time.time() - start_time))
 
 if __name__ == "__main__":
