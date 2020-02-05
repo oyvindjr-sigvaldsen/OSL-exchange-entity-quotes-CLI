@@ -4,7 +4,7 @@
 import requests, bs4, time, sqlite3
 
 def main():
-
+	
 	# for checking file runtime
 	start_time = time.time()
 
@@ -32,7 +32,7 @@ def main():
 		"Elkem"
 	]
 
-	#entity_list = ["Norsk Hydro"]
+	entity_list = ["Thin Film Electronics"]
 
 	entity_index_list = []
 
@@ -46,11 +46,11 @@ def main():
 
 		entity_URL = nordnet_base_URL + entity_URL_list[entity_index_list[i]]
 		print(entity_URL)
-		
+
 		request = requests.get(entity_URL)
 		soup = bs4.BeautifulSoup(request.text, "html.parser")
 
-		current_price_span_class = "Typography__StyledTypography-sc-10mju41-0 iypTIw StatsBox__StyledPriceText-sc-1p4v3dm-2 gwiUDd"
+		current_price_span_class = "Typography__StyledTypography-sc-10mju41-0 cMZjQ StatsBox__StyledPriceText-sc-1p4v3dm-2 emJMXq"
 		current_price = soup.find("span", {"class":current_price_span_class})
 
 		print(entity_names[entity_index_list[i]])
