@@ -13,9 +13,10 @@ def main():
 
 		for i in range(0, len(entity_names)):
 
-			cursor.execute("""INSERT INTO entity_info(entity_name, entity_URL)
-				VALUES(?, ?)""", (entity_names[i], complete_URL[i]))
+			cursor.execute("""INSERT INTO entity_info(entity_name, complete_URL)
+							VALUES(?, ?)""", (entity_names[i], complete_URL[i]))
 			connection.commit()
+
 		connection.close()
 
 	def retrieve_num_pages(NO_ticker_list_base_URL, backtrack_index_num_pages):
@@ -71,7 +72,7 @@ def main():
 	entity_names, entity_URL_list = retrieve_entity_info(num_pages)
 
 	# complete URLs
-	nordnet_base_URL = "www.nordnet.no"
+	nordnet_base_URL = "https://www.nordnet.no"
 	complete_URL = []
 
 	for extension in tqdm(entity_URL_list):
