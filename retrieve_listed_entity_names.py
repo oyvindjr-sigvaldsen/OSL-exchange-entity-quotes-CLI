@@ -1,9 +1,22 @@
 #!/usr/local/bin/python3
 
 # imports
-import requests, bs4, sqlite3
+import requests, bs4, sqlite3, time
+from tqdm import tqdm
 
 def main():
+
+	def connect_sql(db_name, entity_names, complete_URL):
+
+		connection = sqlite3.connect("OSL_exchange_live_watchlist.db")
+		cursor = connection.cursor()
+
+		for i in range(0, len(entity_names)):
+
+			cursor.execute("""INSERT INTO entity_info(entity_name, entity_URL)
+				VALUES(?, ?)""", (entity_names[i], complete_URL[i]))
+			connection.commit()
+		connection.close()
 
 	def retrieve_num_pages(NO_ticker_list_base_URL, backtrack_index_num_pages):
 
@@ -21,7 +34,8 @@ def main():
 		entity_names = []
 		entity_URL_list = []
 
-		for page_num in range(1, int(num_pages)+1):
+		# tqdm = progressbar
+		for page_num in tqdm(range(1, int(num_pages)+1)):
 
 			print(page_num)
 			NO_ticker_list_URL = "https://www.nordnet.no/market/stocks?page=" + str(page_num) + "&exchangeCountry=NO"
@@ -48,6 +62,7 @@ def main():
 
 		return entity_names, entity_URL_list
 
+
 	# prerequisties def retrieve_num_pages()
 	NO_ticker_list_base_URL = "https://www.nordnet.no/market/stocks?exchangeCountry=NO"
 	backtrack_index_num_pages = 19
@@ -55,20 +70,14 @@ def main():
 	num_pages = retrieve_num_pages(NO_ticker_list_base_URL, backtrack_index_num_pages)
 	entity_names, entity_URL_list = retrieve_entity_info(num_pages)
 
-	for i in entity_names:
-		print(i)
+	# complete URLs
+	nordnet_base_URL = "www.nordnet.no"
+	complete_URL = []
 
+	for extension in tqdm(entity_URL_list):
+		complete_URL.append(nordnet_base_URL + extension)
 
-	#connection = sqlite3.connect("OSL_exchange_live_watchlist.db")
-	#cursor = connection.cursor()
-
-	#for i in range(0, len(entity_names)):
-
-	#	cursor.execute("""INSERT INTO entity_info(entity_name, entity_URL)
-	#		VALUES(?, ?)""", (entity_names[i], entity_URL_list[i]))
-	#	connection.commit()
-
-	#connection.close()
+	connect_sql("OSL_exchange_live_watchlist.db", entity_names, complete_URL)
 
 if __name__ == "__main__":
 	main()
