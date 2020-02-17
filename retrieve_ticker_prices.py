@@ -6,11 +6,6 @@ from datetime import datetime as dt
 
 def main():
 
-	# Global vars and other prerequisites
-	OSL_WATCHLIST_DB = "OSL_exchange_live_watchlist.db"
-	start_time = time.time()
-	nordnet_base_URL = "https://www.nordnet.no"
-
 	def retrieve_entity_names(db_name):
 
 		# retrieve entity_names, entity_URL_list from sqlite3 db
@@ -22,6 +17,12 @@ def main():
 		entity_names, entity_URL_list = zip(*entity_info)
 
 		return entity_names, entity_URL_list
+
+
+	# Global vars and other prerequisites
+	db_name = "OSL_exchange_live_watchlist.db"
+	nordnet_base_URL = "https://www.nordnet.no"
+	start_time = time.time()
 
 	entity_names, entity_URL_list = retrieve_entity_names(OSL_WATCHLIST_DB)
 
