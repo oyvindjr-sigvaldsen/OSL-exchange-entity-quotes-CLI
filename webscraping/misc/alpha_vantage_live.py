@@ -11,7 +11,9 @@ from matplotlib.dates import date2num
 import matplotlib.ticker as mticker
 from mpl_finance import candlestick_ohlc
 import matplotlib.dates as mdates
+from matplotlib.widgets import Button
 
+from prettytable import PrettyTable
 # global constants
 ALPHAVANTAGE_API_KEY = "TRAYG9G8E2ZQ0LU5"
 
@@ -19,8 +21,7 @@ def main():
 
 	# return data
 	ts = TimeSeries(key=ALPHAVANTAGE_API_KEY, output_format="pandas")
-	retrieved_data, retrieved_meta_data = ts.get_intraday(symbol="AMZN", interval="1min", outputsize="full")
-
+	retrieved_data, retrieved_meta_data = ts.get_intraday(symbol="NEL.OSL", interval="1min", outputsize="full")
 
 	#retrieved_data['just_date'] = retrieved_data['dates'].dt.date
 
@@ -50,11 +51,18 @@ def main():
 	ax1.grid(True)
 
 	plt.xlabel('Date')
+	#plt.plot(date2num(date), retrieved_data["5. volume"].values)
 	plt.ylabel('Price')
-	plt.title("AMZN")
-	plt.legend()
-	plt.subplots_adjust(left=0.09, bottom=0.20, right=0.94, top=0.90, wspace=0.2, hspace=0)
-	plt.show()
+	plt.title("NEL.OSL")
+
+	table = PrettyTable()
+	for i in range(0, len(close)):
+
+		table.field_names = ["Close Price", "DateTime"]
+		table.add_row([close[i], date[i]])
+
+	print(table)
+	#plt.show()
 
 if __name__ == "__main__":
 	main()
