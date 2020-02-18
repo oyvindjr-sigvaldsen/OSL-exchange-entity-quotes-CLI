@@ -1,3 +1,3 @@
-# OSL-exchange-live-watchlist
+# OSL-exchange-entity-quotes-CLI
 
-Work in progress. WORK IN PROGRESS.
+Work in progress.
