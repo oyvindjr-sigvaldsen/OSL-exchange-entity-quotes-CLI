@@ -17,7 +17,7 @@ def main():
 
 		return entity_names, complete_URL
 
-	db_name = "OSL_exchange_live_watchlist.db"
+	db_name = "OSL_exchange_entity_quotes_CLI.db"
 	entity_names, complete_URL = retrieve_entity_names(db_name)
 
 	return entity_names, complete_URL

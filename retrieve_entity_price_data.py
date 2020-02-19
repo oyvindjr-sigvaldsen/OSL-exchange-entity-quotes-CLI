@@ -6,7 +6,7 @@ from datetime import datetime as dt
 from tqdm import tqdm
 
 import os, sys
-absolute_path  = "/Users/o/Sites/github-repositories/OSL-exchange-live-watchlist/local-modules/"
+absolute_path  = "/Users/o/Sites/github-repositories/OSL-exchange-entity-quotes-CLI/local-modules/"
 sys.path.append(os.path.abspath(absolute_path))
 
 import retrieve_sql_data as rsd
@@ -17,7 +17,7 @@ def main():
 
 	entity_quotes = []
 
-	for i in tqdm(range(140, len(entity_names))):
+	for i in tqdm(range(142, len(entity_names))):
 
 		request = requests.get(complete_URL[i])
 		soup = bs4.BeautifulSoup(request.text, "html.parser")
@@ -29,8 +29,12 @@ def main():
 		high, low = quotes_wrapper[2].text, quotes_wrapper[3].text
 		volume = quotes_wrapper[4].text
 
+		## TODO: check for type buy_price != float() and assign data type accordingly
+
+		print(type(buy_price))
 		print("\n")
 		print(entity_names[i])
+
 
 		entity_price_info = [
 								float(buy_price.replace(",", ".")),
