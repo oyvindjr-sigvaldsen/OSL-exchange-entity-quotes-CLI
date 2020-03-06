@@ -8,7 +8,7 @@ def main():
 
 	def connect_sql(db_name, entity_names, complete_URL):
 
-		connection = sqlite3.connect("OSL_exchange_entity_quotes_CLI.db")
+		connection = sqlite3.connect("OSL_exchange_live_quotes_CLI.db")
 		cursor = connection.cursor()
 
 		for i in range(0, len(entity_names)):
