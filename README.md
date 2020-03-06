@@ -1,3 +1,3 @@
-# OSL-exchange-entity-quotes-CLI
+# OSL-exchange-live-quotes-CLI
 
 Work in progress.
